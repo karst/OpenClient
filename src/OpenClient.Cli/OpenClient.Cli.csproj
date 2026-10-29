@@ -5,7 +5,21 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <!-- Only applies when you pass -r <platform>, e.g. dotnet publish -r win-x64 -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>none</DebugType>
+    <PublishDir>$(MSBuildThisFileDirectory)..\..\artifacts\bin\</PublishDir>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\OpenClient.Core\OpenClient.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\samples\apps.json" Link="apps.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
