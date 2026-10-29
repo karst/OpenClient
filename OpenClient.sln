@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenClient.Core", "src\OpenClient.Core\OpenClient.Core.csproj", "{3F1C2A10-5B7D-4E21-9A64-1D0C7E5B8A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenClient.Cli", "src\OpenClient.Cli\OpenClient.Cli.csproj", "{7C9E4B52-2A38-4F6D-8B17-6E3A9D2C4F02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F1C2A10-5B7D-4E21-9A64-1D0C7E5B8A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F1C2A10-5B7D-4E21-9A64-1D0C7E5B8A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F1C2A10-5B7D-4E21-9A64-1D0C7E5B8A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F1C2A10-5B7D-4E21-9A64-1D0C7E5B8A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9E4B52-2A38-4F6D-8B17-6E3A9D2C4F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9E4B52-2A38-4F6D-8B17-6E3A9D2C4F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9E4B52-2A38-4F6D-8B17-6E3A9D2C4F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9E4B52-2A38-4F6D-8B17-6E3A9D2C4F02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
