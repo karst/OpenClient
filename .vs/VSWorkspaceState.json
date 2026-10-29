@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\OpenClient.App",
+    "\\src\\OpenClient.Cli"
+  ],
+  "SelectedNode": "\\src\\OpenClient.Cli\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}
