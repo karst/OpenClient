@@ -1,0 +1,6 @@
+{
+  "apps": [
+    { "repo": "https://github.com/OpenRCT2/OpenRCT2", "installedVersion": null },
+    { "repo": "https://github.com/Ryujinx/Ryujinx",  "installedVersion": "v1.0.0" }
+  ]
+}
