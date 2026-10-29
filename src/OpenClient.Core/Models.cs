@@ -1,18 +1,24 @@
 namespace OpenClient.Core;
 
-// One entry in apps.json: the repo link you typed in, plus which version
-// we have installed (null = not installed yet). Like a plain C++ struct.
 public class AppEntry
 {
     public string Repo { get; set; } = "";
     public string? InstalledVersion { get; set; }
+    public string? InstallPath { get; set; }      // folder the app was unpacked into
+    public string? Executable { get; set; }       // relative to InstallPath (auto-detected, editable)
+    public bool LaunchConfirmed { get; set; }     // user agreed to run this app
 }
 
-// The whole apps.json file: just a list of entries.
 public class AppList
 {
     public List<AppEntry> Apps { get; set; } = new();
 }
 
-// What we need to know about a GitHub release: its tag ("v1.2.3") and web page.
-public record ReleaseInfo(string Tag, string Url);
+public class Settings
+{
+    public string? InstallRoot { get; set; }      // null = use default
+    public bool FirstRunDone { get; set; }
+}
+
+public record ReleaseAsset(string Name, string DownloadUrl, long Size);
+public record ReleaseInfo(string Tag, string Url, IReadOnlyList<ReleaseAsset> Assets);

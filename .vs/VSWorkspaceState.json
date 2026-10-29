@@ -3,7 +3,8 @@
     "",
     "\\src",
     "\\src\\OpenClient.App",
-    "\\src\\OpenClient.Cli"
+    "\\src\\OpenClient.Cli",
+    "\\src\\OpenClient.Core"
   ],
   "SelectedNode": "\\src\\OpenClient.Cli\\Program.cs",
   "PreviewInSolutionExplorer": false

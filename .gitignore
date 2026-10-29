@@ -4,3 +4,8 @@ obj/
 .idea/
 *.user
 artifacts/
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/OpenClient.slnx/v18/DocumentLayout.json
+.vs/OpenClient.slnx/v18/.wsuo
+.vs/OpenClient.slnx/FileContentIndex/3190cc0e-c603-42b4-9f6a-384b5efabb0e.vsidx

@@ -38,8 +38,43 @@ public class GitHubClient
 
         // Read the JSON reply and pull out the two fields we care about.
         using var json = await JsonDocument.ParseAsync(await response.Content.ReadAsStreamAsync());
-        var tag = json.RootElement.GetProperty("tag_name").GetString() ?? "";
-        var page = json.RootElement.GetProperty("html_url").GetString() ?? "";
-        return new ReleaseInfo(tag, page);
+        var root = json.RootElement;
+        var tag = root.GetProperty("tag_name").GetString() ?? "";
+        var page = root.GetProperty("html_url").GetString() ?? "";
+
+        var assets = new List<ReleaseAsset>();
+        if (root.TryGetProperty("assets", out var arr))
+            foreach (var a in arr.EnumerateArray())
+                assets.Add(new ReleaseAsset(
+                    a.GetProperty("name").GetString() ?? "",
+                    a.GetProperty("browser_download_url").GetString() ?? "",
+                    a.GetProperty("size").GetInt64()));
+
+        return new ReleaseInfo(tag, page, assets);
+    }
+
+    // Downloads a file to disk, reporting progress from 0.0 to 1.0.
+    public async Task DownloadAsync(string url, string destPath,
+        IProgress<double>? progress = null, CancellationToken ct = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Accept.Clear();                                   // asset downloads want a binary Accept
+        request.Headers.Accept.ParseAdd("application/octet-stream");
+
+        using var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct);
+        response.EnsureSuccessStatusCode();
+        var total = response.Content.Headers.ContentLength;
+
+        await using var src = await response.Content.ReadAsStreamAsync(ct);
+        await using var dst = File.Create(destPath);
+        var buffer = new byte[81920];
+        long read = 0;
+        int n;
+        while ((n = await src.ReadAsync(buffer, ct)) > 0)
+        {
+            await dst.WriteAsync(buffer.AsMemory(0, n), ct);
+            read += n;
+            if (total > 0) progress?.Report((double)read / total.Value);
+        }
     }
 }
